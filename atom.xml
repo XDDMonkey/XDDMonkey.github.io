@@ -1,0 +1,395 @@
+<?xml version="1.0" encoding="utf-8"?>
+<feed xmlns="http://www.w3.org/2005/Atom">
+  <title>XDMonkey</title>
+  
+  <link href="/atom.xml" rel="self"/>
+  
+  <link href="http://yoursite.com/"/>
+  <updated>2017-03-18T07:34:54.856Z</updated>
+  <id>http://yoursite.com/</id>
+  
+  <author>
+    <name>XDMonkey</name>
+    
+  </author>
+  
+  <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>C++11中thread类的使用</title>
+    <link href="http://yoursite.com/2017/03/18/C-11%E4%B8%ADthread%E7%B1%BB%E7%9A%84%E4%BD%BF%E7%94%A8/"/>
+    <id>http://yoursite.com/2017/03/18/C-11中thread类的使用/</id>
+    <published>2017-03-18T07:13:33.000Z</published>
+    <updated>2017-03-18T07:34:54.856Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;C-11多线程demo&quot;&gt;&lt;a href=&quot;#C-11多线程demo&quot; class=&quot;headerlink&quot; title=&quot;C++11多线程demo&quot;&gt;&lt;/a&gt;C++11多线程demo&lt;/h3&gt;&lt;figure class=&quot;highlight cpp&quot;&gt;&lt;tabl
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+      <category term="多线程" scheme="http://yoursite.com/tags/%E5%A4%9A%E7%BA%BF%E7%A8%8B/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2017-3-17二面蚂蚁金服C++实习生</title>
+    <link href="http://yoursite.com/2017/03/18/2017-3-17%E4%BA%8C%E9%9D%A2%E8%9A%82%E8%9A%81%E9%87%91%E6%9C%8DC-%E5%AE%9E%E4%B9%A0%E7%94%9F/"/>
+    <id>http://yoursite.com/2017/03/18/2017-3-17二面蚂蚁金服C-实习生/</id>
+    <published>2017-03-18T04:28:41.000Z</published>
+    <updated>2017-03-18T06:49:27.635Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　之前面试官说我没有二面的，但是昨天早上居然又接到了面试电话，通知我晚上七点半电话面试，窃喜啊。不过这次面试没有问很多理论基础知识，自己把上次面试的时候问到的一些知识都补齐了，结果面试官没有问，上来问我的问题总结一下：&lt;/p&gt;
+&lt;h3 id=&quot;摘录&quot;&gt;&lt;a href=&quot;#
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>写出线程安全的单例模式</title>
+    <link href="http://yoursite.com/2017/03/14/%E5%86%99%E5%87%BA%E7%BA%BF%E7%A8%8B%E5%AE%89%E5%85%A8%E7%9A%84%E5%8D%95%E4%BE%8B%E6%A8%A1%E5%BC%8F/"/>
+    <id>http://yoursite.com/2017/03/14/写出线程安全的单例模式/</id>
+    <published>2017-03-14T15:25:11.000Z</published>
+    <updated>2017-03-16T12:22:52.463Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;传统的单例模式为什么不行&quot;&gt;&lt;a href=&quot;#传统的单例模式为什么不行&quot; class=&quot;headerlink&quot; title=&quot;传统的单例模式为什么不行&quot;&gt;&lt;/a&gt;传统的单例模式为什么不行&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;　　教科书上单例模式总是教我们这样写：&lt;br&gt;&lt;f
+    
+    </summary>
+    
+    
+      <category term="设计模式" scheme="http://yoursite.com/tags/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《effective C++》读书笔记（四）</title>
+    <link href="http://yoursite.com/2017/03/13/%E3%80%8Aeffective-C-%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E5%9B%9B%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/13/《effective-C-》读书笔记（四）/</id>
+    <published>2017-03-13T12:06:19.000Z</published>
+    <updated>2017-03-14T13:08:53.124Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;让接口容易被正确使用，不易被误用&quot;&gt;&lt;a href=&quot;#让接口容易被正确使用，不易被误用&quot; class=&quot;headerlink&quot; title=&quot;让接口容易被正确使用，不易被误用&quot;&gt;&lt;/a&gt;让接口容易被正确使用，不易被误用&lt;/h3&gt;&lt;hr&gt;
+&lt;ul&gt;
+&lt;li&gt;好的接
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+      <category term="读书笔记" scheme="http://yoursite.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《effective C++》读书笔记（三）</title>
+    <link href="http://yoursite.com/2017/03/12/%E3%80%8Aeffective-C-%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%89%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/12/《effective-C-》读书笔记（三）/</id>
+    <published>2017-03-12T14:19:39.000Z</published>
+    <updated>2017-03-14T06:10:00.976Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;以对象管理资源&quot;&gt;&lt;a href=&quot;#以对象管理资源&quot; class=&quot;headerlink&quot; title=&quot;以对象管理资源&quot;&gt;&lt;/a&gt;以对象管理资源&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;　　其实也就是在这里，书里提出了RAII的概念。&lt;br&gt;　　我们首先认同一点：调用资源生产
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+      <category term="读书笔记" scheme="http://yoursite.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>典型算法题（一）广搜之推箱子</title>
+    <link href="http://yoursite.com/2017/03/12/%E5%85%B8%E5%9E%8B%E7%AE%97%E6%B3%95%E9%A2%98%EF%BC%88%E4%B8%80%EF%BC%89%E5%B9%BF%E6%90%9C%E4%B9%8B%E6%8E%A8%E7%AE%B1%E5%AD%90/"/>
+    <id>http://yoursite.com/2017/03/12/典型算法题（一）广搜之推箱子/</id>
+    <published>2017-03-12T06:53:21.000Z</published>
+    <updated>2017-03-12T07:05:25.030Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　大家一定玩过“推箱子”这个经典的游戏。具体规则就是在一个N*M的地图上，有1个玩家、1个箱子、1个目的地以及若干障碍，其余是空地。玩家可以往上下左右4个方向移动，但是不能移动出地图或者移动到障碍里去。如果往这个方向移动推到了箱子，箱子也会按这个方向移动一格，当然，箱子也
+    
+    </summary>
+    
+    
+      <category term="算法" scheme="http://yoursite.com/tags/%E7%AE%97%E6%B3%95/"/>
+    
+      <category term="BFS" scheme="http://yoursite.com/tags/BFS/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《effective C++》读书笔记（二）</title>
+    <link href="http://yoursite.com/2017/03/11/%E3%80%8Aeffective-C-%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%BA%8C%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/11/《effective-C-》读书笔记（二）/</id>
+    <published>2017-03-11T09:03:26.000Z</published>
+    <updated>2017-03-12T15:36:50.889Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;了解C-默默编写并调用哪些函数&quot;&gt;&lt;a href=&quot;#了解C-默默编写并调用哪些函数&quot; class=&quot;headerlink&quot; title=&quot;了解C++默默编写并调用哪些函数&quot;&gt;&lt;/a&gt;了解C++默默编写并调用哪些函数&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;　　在我们没有提供的情
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+      <category term="读书笔记" scheme="http://yoursite.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>《effective C++》读书笔记（一）</title>
+    <link href="http://yoursite.com/2017/03/11/%E3%80%8Aeffective-C-%E3%80%8B%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/11/《effective-C-》读书笔记（一）/</id>
+    <published>2017-03-11T04:57:16.000Z</published>
+    <updated>2017-03-13T06:56:43.619Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　《effective C++》是自己接触的第一本C++进阶书籍，这里专门记录一下自己的读书心得。&lt;/p&gt;
+&lt;h3 id=&quot;视C-为一个语言联邦&quot;&gt;&lt;a href=&quot;#视C-为一个语言联邦&quot; class=&quot;headerlink&quot; title=&quot;视C++为一个语言联邦&quot;&gt;&lt;
+    
+    </summary>
+    
+    
+      <category term="C++" scheme="http://yoursite.com/tags/C/"/>
+    
+      <category term="读书笔记" scheme="http://yoursite.com/tags/%E8%AF%BB%E4%B9%A6%E7%AC%94%E8%AE%B0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>设计模式入门（一）</title>
+    <link href="http://yoursite.com/2017/03/11/%E8%AE%BE%E8%AE%A1%E6%A8%A1%E5%BC%8F%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89/"/>
+    <id>http://yoursite.com/2017/03/11/设计模式入门（一）/</id>
+    <published>2017-03-10T16:32:52.000Z</published>
+    <updated>2017-03-10T16:32:52.881Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>hadoop入门</title>
+    <link href="http://yoursite.com/2017/03/11/hadoop%E5%85%A5%E9%97%A8/"/>
+    <id>http://yoursite.com/2017/03/11/hadoop入门/</id>
+    <published>2017-03-10T16:31:37.000Z</published>
+    <updated>2017-03-14T12:13:51.125Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="大数据" scheme="http://yoursite.com/tags/%E5%A4%A7%E6%95%B0%E6%8D%AE/"/>
+    
+      <category term="hadoop" scheme="http://yoursite.com/tags/hadoop/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>2017-3-10面蚂蚁金服C++实习生</title>
+    <link href="http://yoursite.com/2017/03/10/2017-3-10%E9%9D%A2%E8%9A%82%E8%9A%81%E9%87%91%E6%9C%8DC-%E5%AE%9E%E4%B9%A0%E7%94%9F/"/>
+    <id>http://yoursite.com/2017/03/10/2017-3-10面蚂蚁金服C-实习生/</id>
+    <published>2017-03-10T06:10:54.000Z</published>
+    <updated>2017-03-18T06:29:41.657Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　投出去了很多简历，终于今天迎来了第一个面试电话，也是这段时间以来第一次去实验室结果就打来了，虽然问了面试官，面试官明确表示没有二面了，自己还是很开心，毕竟明确了自己的短板，后续还是有机会的。&lt;/p&gt;
+&lt;h3 id=&quot;摘录&quot;&gt;&lt;a href=&quot;#摘录&quot; class=&quot;he
+    
+    </summary>
+    
+    
+      <category term="面试" scheme="http://yoursite.com/tags/%E9%9D%A2%E8%AF%95/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习算法入门（七）K-means</title>
+    <link href="http://yoursite.com/2017/03/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%83%EF%BC%89K-means/"/>
+    <id>http://yoursite.com/2017/03/10/机器学习算法入门（七）K-means/</id>
+    <published>2017-03-10T04:45:41.000Z</published>
+    <updated>2017-03-11T14:04:23.434Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习算法入门（六）贝叶斯算法</title>
+    <link href="http://yoursite.com/2017/03/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%EF%BC%88%E5%85%AD%EF%BC%89%E8%B4%9D%E5%8F%B6%E6%96%AF%E7%AE%97%E6%B3%95/"/>
+    <id>http://yoursite.com/2017/03/10/机器学习算法入门（六）贝叶斯算法/</id>
+    <published>2017-03-10T04:44:48.000Z</published>
+    <updated>2017-03-11T14:04:14.455Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习算法入门（五）支持向量机</title>
+    <link href="http://yoursite.com/2017/03/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%94%EF%BC%89%E6%94%AF%E6%8C%81%E5%90%91%E9%87%8F%E6%9C%BA/"/>
+    <id>http://yoursite.com/2017/03/10/机器学习算法入门（五）支持向量机/</id>
+    <published>2017-03-10T04:44:25.000Z</published>
+    <updated>2017-03-11T14:04:45.792Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习算法入门（四）决策树</title>
+    <link href="http://yoursite.com/2017/03/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%EF%BC%88%E5%9B%9B%EF%BC%89%E5%86%B3%E7%AD%96%E6%A0%91/"/>
+    <id>http://yoursite.com/2017/03/10/机器学习算法入门（四）决策树/</id>
+    <published>2017-03-10T03:32:19.000Z</published>
+    <updated>2017-03-11T14:04:37.534Z</updated>
+    
+    <summary type="html">
+    
+    </summary>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习算法入门（三）逻辑回归</title>
+    <link href="http://yoursite.com/2017/03/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%89%EF%BC%89%E9%80%BB%E8%BE%91%E5%9B%9E%E5%BD%92/"/>
+    <id>http://yoursite.com/2017/03/10/机器学习算法入门（三）逻辑回归/</id>
+    <published>2017-03-10T03:31:54.000Z</published>
+    <updated>2017-03-11T14:04:30.427Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　&lt;strong&gt;首先逻辑回归是一个分类算法而不是一个回归算法。&lt;/strong&gt;&lt;/p&gt;
+
+    
+    </summary>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习算法入门（二）线性回归</title>
+    <link href="http://yoursite.com/2017/03/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%EF%BC%88%E4%BA%8C%EF%BC%89%E7%BA%BF%E6%80%A7%E5%9B%9E%E5%BD%92/"/>
+    <id>http://yoursite.com/2017/03/10/机器学习算法入门（二）线性回归/</id>
+    <published>2017-03-10T03:31:27.000Z</published>
+    <updated>2017-03-11T14:04:07.378Z</updated>
+    
+    <summary type="html">
+    
+      &lt;p&gt;　　线性回归是首先介绍的回归算法。&lt;/p&gt;
+&lt;h3 id=&quot;什么是回归&quot;&gt;&lt;a href=&quot;#什么是回归&quot; class=&quot;headerlink&quot; title=&quot;什么是回归&quot;&gt;&lt;/a&gt;什么是回归&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;　　自己理解的回归是我们用定量去预测，与之对应则是分类，
+    
+    </summary>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>机器学习算法入门（一）KNN</title>
+    <link href="http://yoursite.com/2017/03/10/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E7%AE%97%E6%B3%95%E5%85%A5%E9%97%A8%EF%BC%88%E4%B8%80%EF%BC%89KNN/"/>
+    <id>http://yoursite.com/2017/03/10/机器学习算法入门（一）KNN/</id>
+    <published>2017-03-10T03:30:36.000Z</published>
+    <updated>2017-03-11T14:04:53.456Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是KNN&quot;&gt;&lt;a href=&quot;#什么是KNN&quot; class=&quot;headerlink&quot; title=&quot;什么是KNN&quot;&gt;&lt;/a&gt;什么是KNN&lt;/h3&gt;&lt;hr&gt;
+&lt;p&gt;　　KNN即K近邻算法。&lt;/p&gt;
+&lt;blockquote&gt;
+&lt;p&gt;《统计学习方法》P37：K近邻算
+    
+    </summary>
+    
+    
+      <category term="机器学习" scheme="http://yoursite.com/tags/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    
+  </entry>
+  
+  <entry>
+    <title>基于MySQL的数据库知识整理（三）索引机制</title>
+    <link href="http://yoursite.com/2017/03/09/%E5%9F%BA%E4%BA%8EMySQL%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86%EF%BC%88%E4%B8%89%EF%BC%89%E7%B4%A2%E5%BC%95%E6%9C%BA%E5%88%B6/"/>
+    <id>http://yoursite.com/2017/03/09/基于MySQL的数据库知识整理（三）索引机制/</id>
+    <published>2017-03-09T09:39:27.000Z</published>
+    <updated>2017-03-09T09:40:10.528Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;什么是索引&quot;&gt;&lt;a href=&quot;#什么是索引&quot; class=&quot;headerlink&quot; title=&quot;什么是索引&quot;&gt;&lt;/a&gt;什么是索引&lt;/h3&gt;&lt;p&gt;　　索引（index）是对数据库表中一或多个列的值进行排序的结构，是帮助数据库高效获取数据的数据结构。某种程度上而言
+    
+    </summary>
+    
+    
+  </entry>
+  
+  <entry>
+    <title>基于MySQL的数据库知识整理（二）锁机制</title>
+    <link href="http://yoursite.com/2017/03/09/%E5%9F%BA%E4%BA%8EMySQL%E7%9A%84%E6%95%B0%E6%8D%AE%E5%BA%93%E7%9F%A5%E8%AF%86%E6%95%B4%E7%90%86%EF%BC%88%E4%BA%8C%EF%BC%89%E9%94%81%E6%9C%BA%E5%88%B6/"/>
+    <id>http://yoursite.com/2017/03/09/基于MySQL的数据库知识整理（二）锁机制/</id>
+    <published>2017-03-09T08:32:41.000Z</published>
+    <updated>2017-03-09T13:47:32.841Z</updated>
+    
+    <summary type="html">
+    
+      &lt;h3 id=&quot;数据库并发可能会带来的问题&quot;&gt;&lt;a href=&quot;#数据库并发可能会带来的问题&quot; class=&quot;headerlink&quot; title=&quot;数据库并发可能会带来的问题&quot;&gt;&lt;/a&gt;数据库并发可能会带来的问题&lt;/h3&gt;&lt;hr&gt;
+&lt;h4 id=&quot;更新丢失&quot;&gt;&lt;a href=&quot;#
+    
+    </summary>
+    
+    
+      <category term="基础知识" scheme="http://yoursite.com/tags/%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/"/>
+    
+      <category term="数据库" scheme="http://yoursite.com/tags/%E6%95%B0%E6%8D%AE%E5%BA%93/"/>
+    
+      <category term="MySQL" scheme="http://yoursite.com/tags/MySQL/"/>
+    
+  </entry>
+  
+</feed>

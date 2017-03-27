@@ -1,0 +1,786 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C++,左值、右值," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="XDMonkey" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="什么是左值，什么是右值？
+　　早期的C中给出的定义：左值是一个表达式，可能出现在赋值操作式的左边或右边，但右值只能出现在右边。比如：12 = a;//编译错误，2是右值，因此不能出现在右边，而a是左值，可以出现在右边
+　　其实在我自己的理解中，左值就是“变量”，而右值就是“常量”，“变量”自然很好理解，但是，“常量”除了我们日常见到的基本类型之外，比如下面的这种也是属于“常量的”。12345678">
+<meta property="og:type" content="article">
+<meta property="og:title" content="C++中的左值和右值">
+<meta property="og:url" content="http://yoursite.com/2017/02/07/C-中的左值和右值/index.html">
+<meta property="og:site_name" content="XDMonkey">
+<meta property="og:description" content="什么是左值，什么是右值？
+　　早期的C中给出的定义：左值是一个表达式，可能出现在赋值操作式的左边或右边，但右值只能出现在右边。比如：12 = a;//编译错误，2是右值，因此不能出现在右边，而a是左值，可以出现在右边
+　　其实在我自己的理解中，左值就是“变量”，而右值就是“常量”，“变量”自然很好理解，但是，“常量”除了我们日常见到的基本类型之外，比如下面的这种也是属于“常量的”。12345678">
+<meta property="og:updated_time" content="2017-02-07T05:41:10.775Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="C++中的左值和右值">
+<meta name="twitter:description" content="什么是左值，什么是右值？
+　　早期的C中给出的定义：左值是一个表达式，可能出现在赋值操作式的左边或右边，但右值只能出现在右边。比如：12 = a;//编译错误，2是右值，因此不能出现在右边，而a是左值，可以出现在右边
+　　其实在我自己的理解中，左值就是“变量”，而右值就是“常量”，“变量”自然很好理解，但是，“常量”除了我们日常见到的基本类型之外，比如下面的这种也是属于“常量的”。12345678">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/02/07/C-中的左值和右值/"/>
+
+
+
+
+
+  <title> C++中的左值和右值 | XDMonkey </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XDMonkey</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-history">
+          <a href="/history" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rocket"></i> <br />
+            
+            凌绝顶
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-plan">
+          <a href="/plan" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-dashboard"></i> <br />
+            
+            清许渠
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/booklist" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-university"></i> <br />
+            
+            黄金屋
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/02/07/C-中的左值和右值/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XDMonkey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ohthh24im.qnssl.com/61083adfjw8exn5bx3wwvj20f009g0sp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XDMonkey">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                C++中的左值和右值
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-02-07T13:22:45+08:00">
+                2017-02-07
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/02/07/C-中的左值和右值/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/02/07/C-中的左值和右值/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h3 id="什么是左值，什么是右值？"><a href="#什么是左值，什么是右值？" class="headerlink" title="什么是左值，什么是右值？"></a>什么是左值，什么是右值？</h3><hr>
+<p>　　早期的C中给出的定义：左值是一个表达式，可能出现在赋值操作式的左边或右边，但右值只能出现在右边。比如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="number">2</span> = a;<span class="comment">//编译错误，2是右值，因此不能出现在右边，而a是左值，可以出现在右边</span></div></pre></td></tr></table></figure></p>
+<p>　　其实在我自己的理解中，左值就是“变量”，而右值就是“常量”，“变量”自然很好理解，但是，“常量”除了我们日常见到的基本类型之外，比如下面的这种也是属于“常量的”。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> a &#123;</div><div class="line"><span class="keyword">private</span>:</div><div class="line">    <span class="keyword">int</span> b;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    a(<span class="keyword">int</span> x) :b(x) &#123;</div><div class="line">    &#125;</div><div class="line">&#125;; </div><div class="line"><span class="function">a <span class="title">xx</span><span class="params">(<span class="number">1</span>)</span></span>;</div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>《C++ Primer》P471：<strong>左值持久；右值短暂</strong>，左值有持久的状态，而右值要么是字面常量，要么是在表达式求值过程中创建的临时对象。</p>
+</blockquote>
+<p>　　另外，左值允许使用&amp;操作符来获取这块内存的地址，而右值则是不允许的。</p>
+<h3 id="关于左值引用"><a href="#关于左值引用" class="headerlink" title="关于左值引用"></a>关于左值引用</h3><hr>
+<p>　　我们平日里见到的引用都是左值引用，左值引用的定义就是：如果一个左值本身是引用，那么它就是左值引用。我们一般见到的左值引用在初始化的时候，等于号的右边都是一个左值。如果等于号的右边是一个右值，那么我们就必须将该引用声明为const，因为右值本身是不可修改的。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> i = <span class="number">1</span>;</div><div class="line"><span class="keyword">int</span> &amp;a = i;<span class="comment">//正确，等于号的右边是一个左值</span></div><div class="line"><span class="keyword">const</span> <span class="keyword">int</span> &amp;b = <span class="number">2</span>;<span class="comment">//正确，等于号的右边是一个右值</span></div><div class="line"><span class="keyword">int</span> &amp;c = <span class="number">3</span>;<span class="comment">//错误，这句是无法通过编译的</span></div></pre></td></tr></table></figure></p>
+<p>　　<strong>非const左值引用是不能使用右值对其赋值的</strong>，这也是为什么上面这条语句无法通过编译的原因。<br>　　那么为什么非const左值引用无法使用右值对其赋值呢？<br>　　原因其实很简单，因为const的左值即表示此引用是无法修改值本身的。而右值本身是无法被修改的，因此如果使用了非const限定的左值引用，即表明了存在可能会修改值的风险。</p>
+<h3 id="C-中左值和右值之间的转化"><a href="#C-中左值和右值之间的转化" class="headerlink" title="C++中左值和右值之间的转化"></a>C++中左值和右值之间的转化</h3><hr>
+<p>　　CV限定符：const、volatile。<br>　　C++11标准中提到：类型为T的左值（非函数，非数组类型）可以被转换为右值，如果T不是类（class）类型，转换后的右值的类型将为不带CV限定符的T类型，否则转换后的右值的类型为T。<br>　　这句话的看上去后半截比较难懂，实际上很好解读，换句话说：只有class类型转换成右值才可能是CV限定的，而对于非class类型的转换成右值必然不是CV限定的。<br>　　那么很容易退出：在C中，右值是没有CV限定符的。</p>
+<h3 id="右值引用"><a href="#右值引用" class="headerlink" title="右值引用"></a>右值引用</h3><hr>
+<p>　　那么真的没有办法创建用右值来赋值的非const引用吗？<br>　　在最新的C++11中引入了右值引用，而在C++11中引入右值引用的一个根本目的是为了支持移动操作。<br>　　右值引用用&amp;&amp;来表示，因为右值引用是专为右值而生，因此我们无法将一个右值引用绑定到一个左值上。<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">int</span> i = <span class="number">0</span>;</div><div class="line"><span class="keyword">int</span> &amp;&amp;r = i;<span class="comment">//是无法通过编译的，因为我们无法将一个右值引用绑定到一个左值上</span></div><div class="line"><span class="keyword">int</span> &amp;&amp;rr2 = i * <span class="number">42</span>;<span class="comment">//可以通过编译，成功绑定</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>《C++ Primer》P471：为了支持移动操作，新标准引入了一种新的引用类型——右值引用（rvalue reference）。所谓右值引用就是必须绑定到右值的引用。我么通过&amp;&amp;而不是&amp;来获得右值引用。如我们将要看到的，右值引用有一个重要的性质——只能绑定到一个将要销毁的对象。因此，我们可以自由地将一个右值引用的资源“移动”到另一个对象中。</p>
+</blockquote>
+<p>　　以复制-交换（copy-swap，复制-交换天然解决了在重载赋值运算符时候的自赋值问题，参见《C++ Primer》P459）操作为例。<br>　　假设类a的定义如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> a&#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">    <span class="keyword">int</span> member1;</div><div class="line">&#125;;</div></pre></td></tr></table></figure></p>
+<p>　　在我们引入右值引用之前，我们只能这样使用复制-交换：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a&amp; a::<span class="keyword">operator</span>=(a v)&#123;</div><div class="line">    swap(*<span class="keyword">this</span>,v);</div><div class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　或者使用引用的话，是这样：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">a&amp; a::<span class="keyword">operator</span>=(<span class="keyword">const</span> a&amp; v)&#123;</div><div class="line">    a temp(v);<span class="comment">//因为v是只读的，因此无法实现交换操作，只能构建临时对象</span></div><div class="line">    swap(*<span class="keyword">this</span>,temp);</div><div class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　上面我们可以看到，使用引用和没有使用引用其实都是一样的，都构建了临时对象，临时对象在脱离作用域的时候都自动执行了析构，那么有没有什么办法可以不构建临时对象呢？<br>　　这个时候右值引用就应运而生，使用右值引用就可以丢掉const限定符，从而实现对右值的修改，从而可以避免构建临时对象。代码如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">a&amp; a::<span class="keyword">operator</span>=(<span class="keyword">const</span> a&amp;&amp; v)&#123;</div><div class="line">    swap(*<span class="keyword">this</span>,v);</div><div class="line">    <span class="keyword">return</span> *<span class="keyword">this</span>;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　关于右值引用暂时就讲到这里，后续会写一篇专门讲move语义、转移构造函数以及右值引用。</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/左值、右值/" rel="tag"># 左值、右值</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/01/12/Java中的四大代码块/" rel="next" title="Java中的四大代码块">
+                <i class="fa fa-chevron-left"></i> Java中的四大代码块
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/09/基于MySQL的数据库知识整理（一）事务机制/" rel="prev" title="基于MySQL的数据库知识整理（一）事务机制">
+                基于MySQL的数据库知识整理（一）事务机制 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/02/07/C-中的左值和右值/"
+           data-title="C++中的左值和右值" data-url="http://yoursite.com/2017/02/07/C-中的左值和右值/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://ohthh24im.qnssl.com/61083adfjw8exn5bx3wwvj20f009g0sp.jpg"
+               alt="XDMonkey" />
+          <p class="site-author-name" itemprop="name">XDMonkey</p>
+           
+              <p class="site-description motion-element" itemprop="description">愿一生都不停止思考|电影 音乐 电子 编程|@XDU|@HUST</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xdmonkey" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/xdmonkey" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1627929311?refer_flag=1001030102_&is_all=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#什么是左值，什么是右值？"><span class="nav-number">1.</span> <span class="nav-text">什么是左值，什么是右值？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#关于左值引用"><span class="nav-number">2.</span> <span class="nav-text">关于左值引用</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#C-中左值和右值之间的转化"><span class="nav-number">3.</span> <span class="nav-text">C++中左值和右值之间的转化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#右值引用"><span class="nav-number">4.</span> <span class="nav-text">右值引用</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XDMonkey</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xdmonkey"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>

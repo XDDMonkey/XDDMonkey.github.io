@@ -1,0 +1,843 @@
+<!doctype html>
+
+
+
+  
+
+
+<html class="theme-next mist use-motion" lang="zh-Hans">
+<head>
+  <meta charset="UTF-8"/>
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1"/>
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform" />
+<meta http-equiv="Cache-Control" content="no-siteapp" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css" />
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css" />
+
+<link href="/css/main.css?v=5.1.0" rel="stylesheet" type="text/css" />
+
+
+  <meta name="keywords" content="C++,读书笔记," />
+
+
+
+
+
+  <link rel="alternate" href="/atom.xml" title="XDMonkey" type="application/atom+xml" />
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.0" />
+
+
+
+
+
+
+<meta name="description" content="《effective C++》是自己接触的第一本C++进阶书籍，这里专门记录一下自己的读书心得。
+视C++为一个语言联邦
+　　最一开始，C++只是C加上一些oop的特性。C++最初的名称是C with classes。最开始的C++也是作为C的超集出现的，截止到这篇文章为止，目前最新的C语言标准是ISO/IEC 9899:2011，这也替代了我们俗称的C99的ISO/IEC 9899:1999">
+<meta property="og:type" content="article">
+<meta property="og:title" content="《effective C++》读书笔记（一）">
+<meta property="og:url" content="http://yoursite.com/2017/03/11/《effective-C-》读书笔记（一）/index.html">
+<meta property="og:site_name" content="XDMonkey">
+<meta property="og:description" content="《effective C++》是自己接触的第一本C++进阶书籍，这里专门记录一下自己的读书心得。
+视C++为一个语言联邦
+　　最一开始，C++只是C加上一些oop的特性。C++最初的名称是C with classes。最开始的C++也是作为C的超集出现的，截止到这篇文章为止，目前最新的C语言标准是ISO/IEC 9899:2011，这也替代了我们俗称的C99的ISO/IEC 9899:1999">
+<meta property="og:updated_time" content="2017-03-13T06:56:43.619Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="《effective C++》读书笔记（一）">
+<meta name="twitter:description" content="《effective C++》是自己接触的第一本C++进阶书籍，这里专门记录一下自己的读书心得。
+视C++为一个语言联邦
+　　最一开始，C++只是C加上一些oop的特性。C++最初的名称是C with classes。最开始的C++也是作为C的超集出现的，截止到这篇文章为止，目前最新的C语言标准是ISO/IEC 9899:2011，这也替代了我们俗称的C99的ISO/IEC 9899:1999">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Mist',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":0,"b2t":false,"scrollpercent":false},
+    fancybox: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2017/03/11/《effective-C-》读书笔记（一）/"/>
+
+
+
+
+
+  <title> 《effective C++》读书笔记（一） | XDMonkey </title>
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+    
+  
+
+  <div class="container one-collumn sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/"  class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">XDMonkey</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br />
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-history">
+          <a href="/history" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-rocket"></i> <br />
+            
+            凌绝顶
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-plan">
+          <a href="/plan" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-dashboard"></i> <br />
+            
+            清许渠
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-booklist">
+          <a href="/booklist" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-university"></i> <br />
+            
+            黄金屋
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br />
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br />
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal " itemscope itemtype="http://schema.org/Article">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2017/03/11/《effective-C-》读书笔记（一）/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="XDMonkey">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="https://ohthh24im.qnssl.com/61083adfjw8exn5bx3wwvj20f009g0sp.jpg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="XDMonkey">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+            
+            
+              
+                《effective C++》读书笔记（一）
+              
+            
+          </h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2017-03-11T12:57:16+08:00">
+                2017-03-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+              <span class="post-comments-count">
+                <span class="post-meta-divider">|</span>
+                <span class="post-meta-item-icon">
+                  <i class="fa fa-comment-o"></i>
+                </span>
+                <a href="/2017/03/11/《effective-C-》读书笔记（一）/#comments" itemprop="discussionUrl">
+                  <span class="post-comments-count ds-thread-count" data-thread-key="2017/03/11/《effective-C-》读书笔记（一）/" itemprop="commentCount"></span>
+                </a>
+              </span>
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <p>　　《effective C++》是自己接触的第一本C++进阶书籍，这里专门记录一下自己的读书心得。</p>
+<h3 id="视C-为一个语言联邦"><a href="#视C-为一个语言联邦" class="headerlink" title="视C++为一个语言联邦"></a>视C++为一个语言联邦</h3><hr>
+<p>　　最一开始，C++只是C加上一些oop的特性。C++最初的名称是C with classes。最开始的C++也是作为C的超集出现的，截止到这篇文章为止，目前最新的C语言标准是ISO/IEC 9899:2011，这也替代了我们俗称的C99的ISO/IEC 9899:1999。现在的C语言早已不是C++的子集了。<br>　　这一章提到将C++视为一个由相关语言组成的联邦而非单一的语言的。将现代C++拆分为几个次语言：原始的C部分、C++中的oop部分、模板编程（自然包含泛型）、STL。</p>
+<h3 id="尽量以const、enum、inline替代-define"><a href="#尽量以const、enum、inline替代-define" class="headerlink" title="尽量以const、enum、inline替代#define"></a>尽量以const、enum、inline替代#define</h3><hr>
+<p>　　这一章提到了enum hack（或许是因为说了const可以替代宏定义常量，而inline可以替代宏用来替代函数，而专门提出来enum的优势），同时说了说明必要性，详细叙述了#define的诸多缺点</p>
+<h4 id="宏定义常量不利于调试"><a href="#宏定义常量不利于调试" class="headerlink" title="宏定义常量不利于调试"></a>宏定义常量不利于调试</h4><p>　　比如我们宏定义常量的时候：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="meta">#<span class="meta-keyword">define</span> ASPECT_RATIO 1.653</span></div></pre></td></tr></table></figure></p>
+<blockquote>
+<p>P13：记号名称ASPECT_RATIO也许从未被编译器看见：也许在编译器开始处理源码之前它就被预处理器一走了。于是记号名称ASPECT_RATIO有可能没进入记号表（symbol table）内。于是当你运用此常量但获得一个编译错误信息时，可能会带来困惑，因为这个错误信息也许会提到1.653而不是ASPECT_RATIO。如果ASPECT_RATIO被定义在一个非你所写的头文件内，你肯定对1.653以及它来自何处毫无概念，于是你将因为追踪它而浪费时间。这个问题也可能出现在记号式调试器（symbolic debugger）中，原因相同：你所使用的名称可能并未进入记号表（symbol table）</p>
+</blockquote>
+<h4 id="宏定义常量并不重视作用域"><a href="#宏定义常量并不重视作用域" class="headerlink" title="宏定义常量并不重视作用域"></a>宏定义常量并不重视作用域</h4><p>　　除非我们在其后的编译过程中被#undef，不然宏定义的常量自被定义之后就是一直有效的。</p>
+<blockquote>
+<p>P15：这意味着#define不仅不能够用来定义class专属常量，也不能够提供任何封装性，也就是说没有所谓private #define这样的东西。而当然const成员变量是可以被封装的。</p>
+</blockquote>
+<h4 id="尝试用宏定义替代函数换取效率是不太明智的"><a href="#尝试用宏定义替代函数换取效率是不太明智的" class="headerlink" title="尝试用宏定义替代函数换取效率是不太明智的"></a>尝试用宏定义替代函数换取效率是不太明智的</h4><p>　　宏看起来像函数，但不会招致函数调用（function call）带来的额外开销。因为宏定义想要达到函数的功能，可能会带来比较严重的二义性问题。而且由于宏本身不注重作用域，而内联函数则很好地解决了这个问题。</p>
+<blockquote>
+<p>P17：对于单纯常量，最好以const对象或者enums替换#defines；对于形式函数的宏（macros），最好改用inline函数替代#define</p>
+</blockquote>
+<h3 id="尽可能使用const"><a href="#尽可能使用const" class="headerlink" title="尽可能使用const"></a>尽可能使用const</h3><hr>
+<blockquote>
+<p>P18：const语法虽然变化多端，但并不莫测高深，如果关键字const出现在星号左边，表示被指物是常量；如果出现在星号右边，表示指针自身是常量；如果出现在星号两边，表示被指物和指针两者都是常量。</p>
+</blockquote>
+<p>　　以书上为例：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">char</span> greeting[]=<span class="string">"Hello"</span>;</div><div class="line"><span class="keyword">char</span>* p=greeting;<span class="comment">//均不为常量</span></div><div class="line"><span class="keyword">const</span> <span class="keyword">char</span>* p=greeting;<span class="comment">//被指物是常量，指针不是是常量</span></div><div class="line"><span class="keyword">char</span>* <span class="keyword">const</span> p=greeting;<span class="comment">//指针自身是常量，被指物不是常量</span></div><div class="line"><span class="keyword">const</span> <span class="keyword">char</span>* <span class="keyword">const</span> p=greeting;<span class="comment">//指针和被指物都是常量</span></div></pre></td></tr></table></figure></p>
+<p>　　实际上const使用的场景非常常见：</p>
+<h4 id="const修饰函数参数"><a href="#const修饰函数参数" class="headerlink" title="const修饰函数参数"></a>const修饰函数参数</h4><p>　　比如我们在重载=运算符的时候，就将形参类型声明为只读的引用，这就是防止我们在函数体内对参数进行了修改。</p>
+<h4 id="const修饰函数的返回值"><a href="#const修饰函数的返回值" class="headerlink" title="const修饰函数的返回值"></a>const修饰函数的返回值</h4><blockquote>
+<p>P18：令函数返回一个常量值，往往可以降低因客户错误而造成的意外，而又不至于放弃安全性和高效性。</p>
+</blockquote>
+<p>　　以书上的有理数为例子：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Rational &#123;...&#125;;</div><div class="line"><span class="keyword">const</span> Rational <span class="keyword">operator</span>* &#123;<span class="keyword">const</span> Rational&amp; lhs,<span class="keyword">const</span> Rational &amp;rhs&#125;;</div></pre></td></tr></table></figure></p>
+<p>　　如果我们不规定返回值为const的话，则客户则可以实现这样的暴行：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">Rational a,b,c;</div><div class="line">...</div><div class="line">(a*b)=c;</div></pre></td></tr></table></figure></p>
+<p>　　虽然难以理解用户为什么写出这样的赋值操作，但是显然我们应该避免用户可以执行这样的操作，毕竟打错也是一个很好的理由。<br>　　再比如：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">if</span> (a*b=c)<span class="comment">//将'=='打错成了'=</span></div></pre></td></tr></table></figure></p>
+<h4 id="const修饰成员函数"><a href="#const修饰成员函数" class="headerlink" title="const修饰成员函数"></a>const修饰成员函数</h4><blockquote>
+<p>P19：许多人漠视一件事实：两个成员函数如果只是常量性（constness）不同，可以被重载。这实在是一个重要的C++特性。</p>
+</blockquote>
+<p>关于const成员函数的一些特性和需要注意的地方：</p>
+<ol>
+<li>const对象只能调用const成员函数</li>
+<li>const成员函数只能调用const成员函数</li>
+<li>const成员函数到底意味着什么 bitwise constness(physical constness) or logical constness</li>
+<li>在const和non-const成员函数中避免重复</li>
+</ol>
+<p>　　<strong>对于第一点</strong>，值得注意的是非const对象是可以调用const成员函数的。<br>　　<strong>对于第二点</strong>，有一些例外：<a href="http://bbs.csdn.net/topics/90373796" target="_blank" rel="external">如果想要调用非const的成员函数，可以间接调用</a>。<br>　　<strong>对于第三点</strong>，前者是真正的const，而后者则是概念意义上的const，或者说没有那么真的const。<br>　　我们如果坚持于bitwise constness看上去似乎是一点问题都没有，但是通过bitwise测试的const成员函数似乎也没有那么const。书上拿出来的具体例子的原句是：</p>
+<blockquote>
+<p>P21：一个更改了“指针所指物”的成员函数虽然不能算是const，但如果只有指针（而非其所指物）隶属于对象，那么称此函数为bitwise const不会引发编译器异常。</p>
+</blockquote>
+<p>　　那么这样logical constness就不乐意了，既然bitwise constness都没有那么const，那我们的主张（一个const成员函数可以修改它所处理的对象的某些bits，但只有在客户端侦测不出的情况才得如此）为什么不行呢？于是就诞生了解决方案：</p>
+<blockquote>
+<p>P22：解决方法很简单，利用C++的一个与const相关的摆动场：mutable（可变的）。mutable释放掉non-static成员变量的bitwise constness约束。</p>
+</blockquote>
+<p>　　换句话说我们使用mutable修饰的非静态成员变量就可以在const成员函数中被修改了。<br>　　<strong>对于第四点</strong>，因为const对象不能调用非const成员函数，因此很多时候我们同一个功能为了适配const对象和非const对象，往往要准备两个一模一样但只是一个是const，一个不是const的成员函数。</p>
+<blockquote>
+<p>P24：哎哟！你能说出其中发生的代码重复以及伴随的编译时间、维护、代码膨胀等令人头疼的问题吗？当然啦，将边界检验……等所有代码转移到另一个成员函数（往往是个private）并令两个版本的operator[]调用它，是可能的，但你还是重复了一些代码，例如函数调用、两次return语句等等。</p>
+</blockquote>
+<p>　　书上是用转型来解决这个问题的。</p>
+<h3 id="确定对象被使用前已先被初始化"><a href="#确定对象被使用前已先被初始化" class="headerlink" title="确定对象被使用前已先被初始化"></a>确定对象被使用前已先被初始化</h3><hr>
+<p>　　读取未初始化的值会导致不明确的行为，<br>　　我们现在有一些比较明确的规则描述“对象的初始化动作何时一定发生，何时不一定发生”，但是规则依旧非常复杂。</p>
+<blockquote>
+<p>P27：表面上这似乎是个无法决定的状态，而最佳处理方法就是：永远在使用对象之前就将它初始化。对于无任何成员的内置类型，你必须手动完成此事。</p>
+</blockquote>
+<p>　　我们需要保证：</p>
+<ol>
+<li>为内置型对象进行手工初始化。因为C++不保证初始化它们</li>
+<li>构造函数最好使用列初始化方法初始化成员，而不要在构造函数本体内使用复制操作，列出的成员变量的排列次序应该和它们在class中的声明次序保持相同</li>
+<li>为免除“跨编译单元之初始化次序”问题</li>
+</ol>
+<p>　　<strong>对于第一点</strong>，读取未初始化的值会导致不明确的行为。在某些平台上，仅仅只是读取未初始化的值，就可能让你的程序终止运行。<br>　　<strong>对于第二点</strong>，列初始化的时候，对于提供默认构造方法的成员，括号内不需要带参数，但是对于内置类型，则需要明确指定值。特别需要注意的是：如果成员变量是const或者引用，它们就一定需要初值，不能被赋值。关于第二点中的声明次序，也要说明一下：</p>
+<blockquote>
+<p>P29：C++有着十分固定的“成员初始化次序”。</p>
+</blockquote>
+<p>　　比如基类比派生类更早被初始化，而类内的成员变量总是以其声明的次序被初始化，即使它们在成员初始值列中以不同的次序出现（很不幸是合法的），因为有一些成员初始化的时候需要遵循先后次序。如果我们进行列初始化的时候不按照声明的顺序，可能会让读者产生困惑。<br>　　<strong>对于第三点</strong>，很有意思，我们在一个大型工程中的时候，很多变量和对象是存在在静态区域的。静态区域独立于堆和栈，“寿命”从被构造出来直至程序结束为止。这些对象包括全局对象，定义于namespace作用域的对象，在class、function、以及file作用域中声明为static的变量或对象。仅就对象而言，我们将函数内的static对象称为local static对象，而将其他static对象称为non-local static对象。<br>　　对于static对象，在其所属的函数被调用之前，该对象并不存在，只有在第一次调用相关函数的时候，local static对象才被构造出来；<br>　　对于non-static对象，在main()函数调用之前就已经被构造出来了。并且在main()函数结束之后被析构。<br>　　第三条实际上想表达的意思是，在main()函数调用之前，如果两个源码文件中在main()函数之外的部分，一个地方调用了另外一个地方的non-static对象，而实际上C++对“定义于不同的便一单元内的non-local static对象”的初始化相对次序并无明确定义。<br>　　所谓编译单元是指产出单一目标文件的那些源码。基本上它是单一源码文件加上其所含入的头文件。<br>　　书上的例子如下：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> FileSystem &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	...</div><div class="line">	<span class="built_in">std</span>::<span class="keyword">size_t</span> numDisk() <span class="keyword">const</span></div><div class="line">&#125;;</div><div class="line"><span class="keyword">extern</span> FileSystem tfs;</div></pre></td></tr></table></figure></p>
+<p>　　而在外部的形式是<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> Directionary &#123;</div><div class="line"><span class="keyword">public</span>:</div><div class="line">	Directory(params);</div><div class="line">	...</div><div class="line">&#125;;</div><div class="line">Directionary::Directionary(params) &#123;</div><div class="line">	...</div><div class="line">	<span class="built_in">std</span>::<span class="keyword">size_t</span> disks = tfs.numDisks();</div><div class="line">	...</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　这样的话，那我们调用构造函数的时候；<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line"><span class="function">Directionary <span class="title">tempDir</span><span class="params">(params)</span></span>;</div></pre></td></tr></table></figure></p>
+<p>　　我们需要tfs在tempDir之前先被初始化。否则tempDir的构造函数会用到尚未初始化的tfs。但tfs和tempDir是不同的人在不同的时间于不同的源码文件建立起来的，它们是定义于不同编译单元内的non-local static对象。我们无法确定它们调用的先后。<br>　　至于无法确定相对次数也是有原因的。</p>
+<blockquote>
+<p>P31：决定它们的初始化次序相当困难，非常困难，根本无解。在其最常见形式，也是就是多个编译单元内的non-local static对象经由“模板隐式具现化”形成），不但不可能决定正确的初始化次序，甚至往往不值得寻找“可决定正确次序”的特殊情况。</p>
+</blockquote>
+<p>　　解决方案就是将这些non-local static对象转换成local static对象（这实际上是单例模式的一个常见实现手法），当然都要是static，只不过前者是全局的，后者是在函数内部声明为static的。<br>　　于是以此技术施行与tfs和tempDir身上，即有：<br><figure class="highlight cpp"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div></pre></td><td class="code"><pre><div class="line"><span class="keyword">class</span> FileSystem &#123; ... &#125;;</div><div class="line"><span class="function">FileSystem&amp; <span class="title">tfs</span><span class="params">()</span> </span>&#123;</div><div class="line">	<span class="keyword">static</span> FileSystem fs;</div><div class="line">	<span class="keyword">return</span> fs;</div><div class="line">&#125;;</div><div class="line"><span class="keyword">class</span> Directory &#123; ... &#125;;</div><div class="line">Directory::Directory&#123; params &#125;&#123;</div><div class="line">	...</div><div class="line">	<span class="built_in">std</span>::<span class="keyword">size_t</span> disks = tfs.numDisk();</div><div class="line">	...</div><div class="line">&#125;;</div><div class="line"><span class="function">Directory&amp; <span class="title">tempDir</span><span class="params">()</span> </span>&#123;<span class="comment">//对于这个对象，我们也有可能会后续用到，因此也封装成函数比较好。</span></div><div class="line">	<span class="keyword">static</span> Directory td;</div><div class="line">	<span class="keyword">return</span> td;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>　　这么修改之后，这个系统程序的客户完全像以前一样地用它，唯一不同的是他们现在使用tfs()和tempDir()而不再是tfs和tempDir。也就是他们使用函数返回的“指向static对象”的references，而不再使用static对象自身。</p>
+<p>　　</p>
+<p>　　</p>
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+    <div>
+      
+        
+
+      
+    </div>
+
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/C/" rel="tag"># C++</a>
+          
+            <a href="/tags/读书笔记/" rel="tag"># 读书笔记</a>
+          
+        </div>
+      
+
+      
+        
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2017/03/11/设计模式入门（一）/" rel="next" title="设计模式入门（一）">
+                <i class="fa fa-chevron-left"></i> 设计模式入门（一）
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2017/03/11/《effective-C-》读书笔记（二）/" rel="prev" title="《effective C++》读书笔记（二）">
+                《effective C++》读书笔记（二） <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+          
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+      <div class="ds-thread" data-thread-key="2017/03/11/《effective-C-》读书笔记（一）/"
+           data-title="《effective C++》读书笔记（一）" data-url="http://yoursite.com/2017/03/11/《effective-C-》读书笔记（一）/">
+      </div>
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap" >
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image"
+               src="https://ohthh24im.qnssl.com/61083adfjw8exn5bx3wwvj20f009g0sp.jpg"
+               alt="XDMonkey" />
+          <p class="site-author-name" itemprop="name">XDMonkey</p>
+           
+              <p class="site-description motion-element" itemprop="description">愿一生都不停止思考|电影 音乐 电子 编程|@XDU|@HUST</p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives">
+                <span class="site-state-item-count">26</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              <a href="/tags/index.html">
+                <span class="site-state-item-count">21</span>
+                <span class="site-state-item-name">标签</span>
+              </a>
+            </div>
+          
+
+        </nav>
+
+        
+          <div class="feed-link motion-element">
+            <a href="/atom.xml" rel="alternate">
+              <i class="fa fa-rss"></i>
+              RSS
+            </a>
+          </div>
+        
+
+        <div class="links-of-author motion-element">
+          
+            
+              <span class="links-of-author-item">
+                <a href="https://github.com/xdmonkey" target="_blank" title="GitHub">
+                  
+                    <i class="fa fa-fw fa-github"></i>
+                  
+                  GitHub
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://www.zhihu.com/people/xdmonkey" target="_blank" title="知乎">
+                  
+                    <i class="fa fa-fw fa-globe"></i>
+                  
+                  知乎
+                </a>
+              </span>
+            
+              <span class="links-of-author-item">
+                <a href="http://weibo.com/u/1627929311?refer_flag=1001030102_&is_all=1" target="_blank" title="微博">
+                  
+                    <i class="fa fa-fw fa-weibo"></i>
+                  
+                  微博
+                </a>
+              </span>
+            
+          
+        </div>
+
+        
+        
+          <div class="cc-license motion-element" itemprop="license">
+            <a href="https://creativecommons.org/licenses/by-nc-sa/4.0/" class="cc-opacity" target="_blank">
+              <img src="/images/cc-by-nc-sa.svg" alt="Creative Commons" />
+            </a>
+          </div>
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-3"><a class="nav-link" href="#视C-为一个语言联邦"><span class="nav-number">1.</span> <span class="nav-text">视C++为一个语言联邦</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尽量以const、enum、inline替代-define"><span class="nav-number">2.</span> <span class="nav-text">尽量以const、enum、inline替代#define</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#宏定义常量不利于调试"><span class="nav-number">2.1.</span> <span class="nav-text">宏定义常量不利于调试</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#宏定义常量并不重视作用域"><span class="nav-number">2.2.</span> <span class="nav-text">宏定义常量并不重视作用域</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#尝试用宏定义替代函数换取效率是不太明智的"><span class="nav-number">2.3.</span> <span class="nav-text">尝试用宏定义替代函数换取效率是不太明智的</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#尽可能使用const"><span class="nav-number">3.</span> <span class="nav-text">尽可能使用const</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#const修饰函数参数"><span class="nav-number">3.1.</span> <span class="nav-text">const修饰函数参数</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#const修饰函数的返回值"><span class="nav-number">3.2.</span> <span class="nav-text">const修饰函数的返回值</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#const修饰成员函数"><span class="nav-number">3.3.</span> <span class="nav-text">const修饰成员函数</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#确定对象被使用前已先被初始化"><span class="nav-number">4.</span> <span class="nav-text">确定对象被使用前已先被初始化</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright" >
+  
+  &copy; 
+  <span itemprop="copyrightYear">2017</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">XDMonkey</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Mist
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+    
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.0"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.0"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.0"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.0"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.0"></script>
+
+
+
+  
+
+  
+    
+  
+
+  <script type="text/javascript">
+    var duoshuoQuery = {short_name:"xdmonkey"};
+    (function() {
+      var ds = document.createElement('script');
+      ds.type = 'text/javascript';ds.async = true;
+      ds.id = 'duoshuo-script';
+      ds.src = (document.location.protocol == 'https:' ? 'https:' : 'http:') + '//static.duoshuo.com/embed.js';
+      ds.charset = 'UTF-8';
+      (document.getElementsByTagName('head')[0]
+      || document.getElementsByTagName('body')[0]).appendChild(ds);
+    })();
+  </script>
+
+  
+    
+    
+    <script src="/lib/ua-parser-js/dist/ua-parser.min.js?v=0.7.9"></script>
+    <script src="/js/src/hook-duoshuo.js"></script>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+
+  
+
+  
+
+  
+
+  
+
+
+  
+
+</body>
+</html>
